@@ -69,6 +69,15 @@ fetch(
           );
           renderMovies(filteredMovies);
         });
+
+        const searchInput = document.querySelector('.inpurArea input');
+        searchInput.addEventListener('input', () => {
+          const keyword = searchInput.value.toLowerCase();
+          const filteredMovies = data.results.filter((movie) =>
+            movie.title.toLowerCase().includes(keyword)
+          );
+          renderMovies(filteredMovies);
+        });
       })
       .catch((err) => console.error(err));
   })
