@@ -7,6 +7,7 @@ const options = {
     Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmU0MGM0OGE4MDRhMWJjY2JlMWQyM2Y0ZmZiZTcxOSIsInN1YiI6IjY2MWY4ODhjNmEzMDBiMDE3ZTMzNTEyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3GhVYmb9CSBxVnqam0AYEGfnSdTLBGmAtwkOyQOV-Uc`,
   },
 };
+
 fetch(
   `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=ko-KR`,
   options
@@ -33,15 +34,20 @@ fetch(
                 return genresMap[genreId];
               })
               .join(', ');
+
+            let roundedVoteAverage = movie.vote_average.toFixed(2);
+            let overview = movie.overview || '내용 없음';
             return `
         <div>
           <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+          <h3>${movie.title}</h3>
           <div class = "info">
-          <h2>${movie.title}</h2>
-          <p><strong>개봉일:</strong> ${movie.release_date}</p>
-          <p><strong>평점:</strong> ${movie.vote_average}</p>
-           <p><strong>장르:</strong> ${genres}</p>
-          <p><strong>개요:</strong> ${movie.overview}</p>
+          <div>
+          <p>개봉일: ${movie.release_date}</p>
+          <p>평점: ${roundedVoteAverage}</p>
+          </div>
+          <p>장르: ${genres}</p>
+          <p>소개: ${overview}</p>
           </div>
         </div>
       `;
