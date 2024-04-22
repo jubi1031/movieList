@@ -12,10 +12,13 @@ header h1 {
   padding: 3rem 0;
 }
 
+nav {
+  flex-wrap: wrap;
+}
 
 header nav button {
   padding: 0.5rem 0.5rem;
-  margin: 0 2rem;
+  margin: 0 1rem;
   font-size: 1rem;
   border: none;
   border-radius: 1rem;
@@ -28,7 +31,7 @@ header nav button:hover {
 
 .inpurArea {
   align-items: center;
-  width: 30%;
+  width: 50%;
   margin: 2rem auto;
   height: 3rem;
   padding: 1rem 0;
@@ -67,12 +70,29 @@ h2 {
 }
 
 #movie-list>div {
-  width: calc(33% - 2rem);
+  width: calc(25% - 2rem);
   margin-bottom: 1.5rem;
   background-color: white;
   padding: 1.5rem;
   box-sizing: border-box;
   margin-right: 1rem;
+  border-radius: 2rem;
+}
+
+#movie-list>div .info {}
+
+#movie-list>div:hover {
+  position: relative;
+}
+
+#movie-list>div:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 2rem;
 }
 
@@ -107,8 +127,13 @@ h2 {
   -webkit-box-orient: vertical;
 }
 
+
 @media (max-width: 768px) {
   #movie-list>div {
     width: calc(50% - 20px);
+  }
+
+  .inpurArea {
+    width: 80%;
   }
 }
