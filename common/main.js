@@ -27,34 +27,48 @@ fetch(
       .then((data) => {
         const movieListDiv = document.getElementById('movie-list');
 
-        const movieListHTML = data.results
-          .map((movie) => {
-            const genres = movie.genre_ids
-              .map((genreId) => {
-                return genresMap[genreId];
-              })
-              .join(', ');
+        const renderMovies = (movies) => {
+          const movieListHTML = movies
+            .map((movie) => {
+              const genres = movie.genre_ids
+                .map((genreId) => {
+                  return genresMap[genreId];
+                })
+                .join(', ');
 
-            let roundedVoteAverage = movie.vote_average.toFixed(2);
-            let overview = movie.overview || '내용 없음';
-            return `
-        <div>
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-          <h3>${movie.title}</h3>
-          <div class = "info">
-          <div>
-          <p>개봉일: ${movie.release_date}</p>
-          <p>평점: ${roundedVoteAverage}</p>
-          </div>
-          <p>장르: ${genres}</p>
-          <p>소개: ${overview}</p>
-          </div>
-        </div>
-      `;
-          })
-          .join('');
+              let roundedVoteAverage = movie.vote_average.toFixed(2);
+              let overview = movie.overview || '내용 없음';
+              return `
+                      <div>
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                        <h3>${movie.title}</h3>
+                        <div class="info">
+                          <div>
+                            <p>개봉일: ${movie.release_date}</p>
+                            <p>평점: ${roundedVoteAverage}</p>
+                          </div>
+                          <p>장르: ${genres}</p>
+                          <p>소개: ${overview}</p>
+                        </div>
+                      </div>
+                    `;
+            })
+            .join('');
 
-        movieListDiv.innerHTML = movieListHTML;
+          movieListDiv.innerHTML = movieListHTML;
+        };
+
+        renderMovies(data.results);
+
+        const nav = document.querySelector('header > nav');
+        nav.addEventListener('click', (e) => {
+          if (e.target.tagName !== 'BUTTON') return;
+          let category = e.target.dataset.cate;
+          const filteredMovies = data.results.filter((movie) =>
+            movie.genre_ids.includes(parseInt(category))
+          );
+          renderMovies(filteredMovies);
+        });
       })
       .catch((err) => console.error(err));
   })
