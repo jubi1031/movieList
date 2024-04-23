@@ -57,11 +57,13 @@ function createMovieHTML(movie, genresMap) {
         </div>
         <p>장르: ${genres}</p>
         <p>소개: ${overview}</p>
-      </div>
-    </div>
-  `;
+        </div>
+         <a href="../detail.html"></a>
+        </div>
+        
+        `;
 }
-
+//위치 고민
 function getGenres(movie, genresMap) {
   return movie.genre_ids.map((genreId) => genresMap[genreId]).join(', ');
 }

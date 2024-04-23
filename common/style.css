@@ -1,5 +1,5 @@
 :root {
-  background-color: #ccc;
+  background-color: white;
 }
 
 header>* {
@@ -91,10 +91,10 @@ h2 {
 #movie-list>div:hover .info {
   top: 30%;
   color: white;
-  display: block;
+  /* display: block; */
 }
 
-#movie-list>div:hover::before {
+/* #movie-list>div:hover::before {
   content: '';
   position: absolute;
   top: 0;
@@ -103,6 +103,16 @@ h2 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 2rem;
+} */
+
+#movie-list a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #movie-list>div>img {
