@@ -30,9 +30,6 @@ async function fetchMovies() {
   return data.results;
 }
 
-// 각 영화를 HTML 요소로 변환하는 로직과
-// 장르 ID를 장르 이름으로 변환하는 로직이 별도의 함수로 분리되어
-// 코드의 가독성이 향상
 function renderMovies(movies, genresMap) {
   const movieListDiv = document.getElementById('movie-list');
   const movieListHTML = movies
@@ -60,10 +57,9 @@ function createMovieHTML(movie, genresMap) {
         </div>
          <a href="../detail.html"></a>
         </div>
-        
         `;
 }
-//위치 고민
+
 function getGenres(movie, genresMap) {
   return movie.genre_ids.map((genreId) => genresMap[genreId]).join(', ');
 }
