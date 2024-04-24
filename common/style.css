@@ -138,14 +138,14 @@ h2 {
 }
 
 
-.info p:nth-of-type(2) {
+/* .info p:nth-of-type(2) {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
+} */
 
 
 @media (max-width: 768px) {

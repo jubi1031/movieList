@@ -38,20 +38,26 @@ function renderMovies(movies, genresMap) {
   movieListDiv.innerHTML = movieListHTML;
 }
 
-function createMovieHTML(movie) {
+function createMovieHTML(movie, genresMap) {
+  const genres = getGenres(movie, genresMap);
   const roundedVoteAverage = movie.vote_average.toFixed(2);
+  const overview = movie.overview || '내용 없음';
 
   return `
     <div>
       <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
       <h3>${movie.title}</h3>
       <div class="info">
+        <div>
           <p>개봉일: ${movie.release_date}</p>
           <p>평점: ${roundedVoteAverage}</p>
-      </div>
-      <a href="../detail.html"></a>
-    </div>
-  `;
+        </div>
+        <p>장르: ${genres}</p>
+        <p>소개: ${overview}</p>
+        </div>
+         <a href="../detail.html"></a>
+        </div>
+        `;
 }
 
 function getGenres(movie, genresMap) {
