@@ -2,6 +2,10 @@
   background-color: white;
 }
 
+.wrap {
+  overflow: hidden;
+}
+
 .inner {
   width: 80%;
   margin: auto;
@@ -166,7 +170,18 @@ h2 {
   width: 300px;
 }
 
+#movie-cast {
+  display: flex;
+}
 
+.actor {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.actor img {
+  width: 100px;
+}
 
 @media (max-width: 768px) {
   #movie-list>div {

@@ -45,9 +45,13 @@ async function fetchMovies() {
 // 영화 목록을 HTML로 렌더링하는 함수
 function renderMovies(movies, genresMap) {
   const movieListDiv = document.getElementById('movie-list');
-  movieListDiv.innerHTML = movies
-    .map((movie) => createMovieHTML(movie, genresMap))
-    .join('');
+  if (movieListDiv) {
+    movieListDiv.innerHTML = movies
+      .map((movie) => createMovieHTML(movie, genresMap))
+      .join('');
+  } else {
+    console.error("Element with ID 'movie-list' not found.");
+  }
 }
 
 // 각 영화를 HTML로 변환하는 함수
@@ -121,9 +125,12 @@ async function showMovieDetails() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
-    const movieDetails = await fetchMovieDetails(movieId);
-    renderMovieDetails(movieDetails);
-    renderMovieCast(movieId);
+    if (movieId) {
+      // movieId가 null이 아닌 경우에만 실행
+      const movieDetails = await fetchMovieDetails(movieId);
+      renderMovieDetails(movieDetails);
+      renderMovieCast(movieId);
+    }
   } catch (error) {
     console.error('Error fetching movie details:', error);
   }
@@ -174,18 +181,18 @@ async function renderMovieCast(movieId) {
 
     const movieCastDiv = document.getElementById('movie-cast');
     if (movieCastDiv) {
-      let castHTML = '<h3>출연진</h3>';
       cast.forEach((actor) => {
         const actorProfileUrl = `https://image.tmdb.org/t/p/w200${actor.profile_path}`;
         const characterName = actor.character;
-        castHTML += `
+        const actorHTML = `
           <div class="swiper-slide actor">
             <img src="${actorProfileUrl}" alt="${actor.name}">
             <p><strong>${actor.name}</strong> <br/>${characterName}</p>
           </div>
         `;
+
+        movieCastDiv.innerHTML += actorHTML;
       });
-      movieCastDiv.innerHTML = castHTML;
     }
   } catch (error) {
     console.error('Error fetching cast:', error);
@@ -204,5 +211,17 @@ async function renderMovieCast(movieId) {
   }
 })();
 
+// document.addEventListener('DOMContentLoaded', async function () {
+//   try {
+//     const genresMap = await fetchGenres();
+//     const movies = await fetchMovies();
+//     renderMovies(movies, genresMap);
+//     addEventListenerToNav(movies, genresMap);
+//     addEventListenerToSearch(movies, genresMap);
+//     showMovieDetails(); // 페이지가 로드된 후에 호출되도록 이동
+//   } catch (err) {
+//     console.error(err);
+//   }
+// });
 // 영화 세부 정보 표시
 showMovieDetails();
