@@ -1,6 +1,6 @@
 # movieflix
 
- <img src="./common/readme_main.png" width="600px">
+<p align="center"><img src="./common/readme_main.png" width="600px"></p>
 
 ## 프로젝트 소개
 
