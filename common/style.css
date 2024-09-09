@@ -29,6 +29,7 @@
 
  .movieDetailSection header i {
    position: absolute;
+   scale: 2;
    top: 50%;
    left: 10px;
    transition: 0.3s;
