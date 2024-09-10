@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const apiKey = process.env.API_KEY;
+
 document.addEventListener('DOMContentLoaded', function () {
   const h1Element = document.querySelector('header h1');
   if (h1Element) {
@@ -13,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-const apiKey = '56e40c48a804a1bccbe1d23f4ffbe719';
 const options = {
   method: 'GET',
   headers: {
