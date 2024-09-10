@@ -60,7 +60,7 @@ function createMovieHTML(movie) {
     <div>
       <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
       <h3>${movie.title}</h3>
-      <a href="/detail.html?id=${movie.id}"></a>
+      <a href="/movieList/detail.html?id=${movie.id}"></a>
     </div>
   `;
 }
