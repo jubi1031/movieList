@@ -1,6 +1,4 @@
-require('dotenv').config();
-
-const apiKey = process.env.API_KEY;
+const apiKey = '56e40c48a804a1bccbe1d23f4ffbe719';
 
 document.addEventListener('DOMContentLoaded', function () {
   const h1Element = document.querySelector('header h1');
